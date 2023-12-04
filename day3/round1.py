@@ -41,7 +41,6 @@ for n_riga, riga in zip(range(len(file)), file):
             diagonaleDX = False
 
             # DIAGONALI #
-            
             if n_riga != 0 and n_riga != len(file)-1:
                 
                 if i != 0:
@@ -52,7 +51,6 @@ for n_riga, riga in zip(range(len(file)), file):
                 if i != len(riga):
                     if file[n_riga - 1][i+next_index] != '.' or file[n_riga +1][i+next_index] != '.':
                         diagonaleDX = True
-                        #print('OILLOC')
                 else:
                     diagonaleDX = False
             
