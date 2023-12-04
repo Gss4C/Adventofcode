@@ -36,8 +36,7 @@ for gameid in games:
             if max_red == 0 or estrazione['red'] > max_red:
                 max_red = estrazione['red']
 
-    #print(max_red, ', ' ,max_green, ', ' ,max_blue)
     game_power = max_red * max_green * max_blue
-    #print(game_power)
-    risposta += game_power
+    risposta  += game_power
+
 print(risposta)

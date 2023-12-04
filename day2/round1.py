@@ -1,22 +1,19 @@
 file = open('input.txt', 'r')
-games = {}
-
-#creo un dizionario utile
-for count, line in enumerate(file, start=1):
-    line = line.rstrip()
-    sline = line.split(':')
-    games[str(count)] = sline[1]
-
-#soglie
 reds = 12
 greens = 13
 blues = 14
 
+#creo un dizionario utile
+games = {}
+for count, line in enumerate(file, start=1):
+    line = line.rstrip()
+    splitted = line.split(':')
+    games[str(count)] = splitted[1]
 
 #controllo game per game
-lista_ids = []
+good_games_id = []
 for gameid in games:
-    gioco_valido = True
+    goodgame = True
     estrazioni_singolo_game = games[gameid].split(';')
 
     for estrazione in estrazioni_singolo_game:
@@ -28,16 +25,14 @@ for gameid in games:
         
         if 'green' in estrazione_dict:
             if estrazione_dict['green'] > greens:
-                gioco_valido = False
+                goodgame = False
         if 'blue' in estrazione_dict:
-            if estrazione_dict['blue'] > blues:
-                gioco_valido = False
+            if estrazione_dict['blue']  > blues:
+                goodgame = False
         if 'red' in estrazione_dict:
-            if estrazione_dict['red'] > reds:
-                gioco_valido = False
-        
-        #print(estrazione_dict)
-    if gioco_valido:
-        lista_ids.append(int(gameid))
+            if estrazione_dict['red']   > reds:
+                goodgame = False
+    if goodgame:
+        good_games_id.append(int(gameid))
 
-print(sum(lista_ids))
+print(sum(good_games_id))
