@@ -1,4 +1,4 @@
-file_hand = open('test.txt', 'r')
+file_hand = open('input.txt', 'r')
 file = file_hand.readlines()
 numeri_da_sommare = []
 
@@ -42,36 +42,79 @@ for n_riga, riga in zip(range(len(file)), file):
 
             # DIAGONALI #
             
+            if n_riga != 0 and n_riga != len(file)-1:
+                
+                if i != 0:
+                    if file[n_riga - 1][i-1] != '.' or file[n_riga+1][i-1] != '.':
+                        diagonaleSX = True
+                else:
+                    diagonaleSX = False
+                if i != len(riga):
+                    if file[n_riga - 1][i+next_index] != '.' or file[n_riga +1][i+next_index] != '.':
+                        diagonaleDX = True
+                        #print('OILLOC')
+                else:
+                    diagonaleDX = False
+            
+            if n_riga == 0:
+                
+                if i != 0:
+                    if file[n_riga+1][i-1] != '.':
+                        diagonaleSX = True
+                else:
+                    diagonaleSX = False
+                if i != len(riga):
+                    if file[n_riga +1][i+next_index]!= '.':
+                        diagonaleDX = True
+                else:
+                    diagonaleDX = False
+
+            if n_riga == len(file)-1:
+                
+                if i != 0:
+                    if file[n_riga-1][i-1] != '.':
+                        diagonaleSX = True
+                else:
+                    diagonaleSX = False
+                if i != len(riga):
+                    if file[n_riga -1][i+next_index]!= '.':
+                        diagonaleDX = True
+                else:
+                    diagonaleDX = False
+            
 
             # SOPRA E SOTTO #
             for posizione in posizioni_numero:
                 if n_riga != 0:
                     if file[n_riga - 1][posizione] != '.':
                         riga_sopra = True
+                        
                 elif n_riga == 0:
-                    riga_sopra = True
+                    riga_sopra = False
+                    
 
                 if n_riga != len(file)-1:
                     if file[n_riga + 1][posizione] != '.':
                         riga_sotto = True
                 elif n_riga == len(file) - 1:
-                    riga_sotto = True
+                    riga_sotto = False
             
             # DESTRA E SINISTRA #
             if i != 0:
                 if riga[i - 1] != '.':
                     riga_sx = True
             else:
-                riga_sx = True
+                riga_sx = False
             
             if (i+next_index) != len(riga)-1:
                 if riga[i + next_index] != '.':
                     riga_dx = True
             else:
-                riga_dx = True
+                riga_dx = False
 
             numero_valido = riga_dx or riga_sx or riga_sotto or riga_sopra or diagonaleDX or diagonaleSX
             if numero_valido:
                 numeri_da_sommare.append(int(numero_string))
+                #print(numero_string)
 risposta = sum(numeri_da_sommare)
-print(risposta)                
+print(risposta)
