@@ -2,7 +2,6 @@ file = open('input.txt', 'r')
 
 cacca = []
 for line in file:
-    print(line)
     coso = line.split(':')
     cazzi = coso[1].split('|')
     winning = cazzi[0].split()
